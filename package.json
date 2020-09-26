@@ -6,8 +6,14 @@
   "license": "MIT",
   "scripts": {
     "build": "babel server -d dist --extensions \".ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node -r dotenv/config dist/index.js",
     "dev": "nodemon -r dotenv/config -q server/index.ts --extensions \".ts\" --exec babel-node"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -25,19 +31,30 @@
     "@babel/preset-typescript": "^7.10.4",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.8",
+    "@types/mongoose": "^5.7.36",
     "@types/node": "^14.11.2",
     "@types/redis": "^2.8.27",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "babel-plugin-jest-hoist": "^26.2.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-root-import": "^6.5.0",
     "concurrently": "^5.3.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.3.0",
     "nodemon": "^2.0.4",
-    "ts-node": "^9.0.0",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.0.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.0.3"
   },
   "dependencies": {
-    "@types/mongoose": "^5.7.36",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
