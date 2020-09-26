@@ -1,6 +1,5 @@
 module.exports = {
   plugins: [
-    ["inline-dotenv"],
     ["@babel/plugin-transform-typescript"],
     ["@babel/plugin-transform-modules-commonjs"],
     ["@babel/plugin-proposal-async-generator-functions"],

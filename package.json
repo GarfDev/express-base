@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel server -d dist --extensions \".ts\"",
     "start": "node -r dotenv/config dist/index.js",
-    "dev": "nodemon -q server/index.ts --extensions \".ts\" --exec babel-node"
+    "dev": "nodemon -r dotenv/config -q server/index.ts --extensions \".ts\" --exec babel-node"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -27,7 +27,6 @@
     "@types/express": "^4.17.8",
     "@types/node": "^14.11.2",
     "@types/redis": "^2.8.27",
-    "babel-plugin-inline-dotenv": "^1.6.0",
     "babel-plugin-jest-hoist": "^26.2.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-root-import": "^6.5.0",
