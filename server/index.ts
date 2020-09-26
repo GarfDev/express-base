@@ -1,8 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
-import redis from "redis";
+// Import Middlewares
+import cookieParser from "cookie-parser";
+// Import Utils
+import { getRedisClient } from "@/utils";
 
 const port = process.env.PORT || 5000;
+const redis_url = process.env.REDIS_URL || "";
 
 /*
  * Initialize Application
@@ -13,11 +17,7 @@ const app = express();
  * Initialize Redis Connection
  */
 
-const redisClient = redis.createClient({ url: process.env.REDIS_URL || "" });
-
-redisClient.on("error", (err) => {
-  console.log("Redis error: ", err);
-});
+getRedisClient(redis_url);
 
 /*
  * Initialize MongoDB Connection
@@ -31,6 +31,16 @@ mongoose.connect(process.env.MONGODB_URL || "", {
 export const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+/*
+ * Apply Middlewares
+ */
+
+app.use(cookieParser(process.env.SECRET_KEY));
+
+app.get("/", (req, res) => {
+  res.send("your IP is: " + req.connection.remoteAddress);
+});
 
 /*
  * App listening
