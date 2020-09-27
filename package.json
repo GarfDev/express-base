@@ -5,6 +5,7 @@
   "author": "Nguyen Gia Tuan <garfdev.13@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint",
     "build": "babel server -d dist --extensions \".ts\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node -r dotenv/config dist/index.js",
@@ -37,6 +38,7 @@
     "@types/util.promisify": "^1.0.4",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
+    "@types/uniqid": "^5.2.0",
     "babel-plugin-jest-hoist": "^26.2.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-root-import": "^6.5.0",
@@ -56,7 +58,6 @@
     "typescript": "^4.0.3"
   },
   "dependencies": {
-    "@types/uniqid": "^5.2.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
