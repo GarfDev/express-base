@@ -1,7 +1,7 @@
 import express from 'express';
-import mongoose from 'mongoose';
 // Import Middlewares
 import cookieParser from 'cookie-parser';
+import { sessionMiddleware } from '@/middlewares';
 // Import Utils
 import { getRedisClient, getMongooseConn } from '@/utils';
 
@@ -31,7 +31,7 @@ getMongooseConn(process.env.MONGODB_URL);
  */
 
 app.use(cookieParser(process.env.SECRET_KEY));
-
+app.use(sessionMiddleware);
 /*
  * App listening
  */
