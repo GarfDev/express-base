@@ -9,7 +9,7 @@
     "build": "babel server -d dist --extensions \".ts\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node -r dotenv/config dist/index.js",
-    "dev": "nodemon -r dotenv/config -q server/index.ts --extensions \".ts\" --exec babel-node"
+    "dev": "nodemon -d 3 -r dotenv/config -q server/index.ts --extensions \".ts\" --exec babel-node"
   },
   "husky": {
     "hooks": {
@@ -33,12 +33,13 @@
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.8",
     "@types/mongoose": "^5.7.36",
+    "@types/multer": "^1.4.4",
     "@types/node": "^14.11.2",
     "@types/redis": "^2.8.27",
+    "@types/uniqid": "^5.2.0",
     "@types/util.promisify": "^1.0.4",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
-    "@types/uniqid": "^5.2.0",
     "babel-plugin-jest-hoist": "^26.2.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-root-import": "^6.5.0",
@@ -62,6 +63,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.7",
+    "multer": "^1.4.2",
     "redis": "^3.0.2",
     "uniqid": "^5.2.0"
   }
