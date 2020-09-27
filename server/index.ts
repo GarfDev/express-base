@@ -34,6 +34,10 @@ app.use(cookieParser(process.env.SECRET_KEY));
 app.use(sessionMiddleware);
 app.use(uploadFileMiddleware);
 
+app.get('/', (req, res) => {
+  return res.send({});
+});
+
 /*
  * App listening
  */
