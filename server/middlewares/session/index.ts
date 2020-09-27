@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { getRequestIP, getRedisClient } from '@/utils';
 import CartModel from '@/models/Cart';
+import { maxAge } from '@/constants';
 import initSession from './initSession';
 import initCart from './initCart';
 
@@ -18,8 +19,8 @@ const sessionMiddleware = async (req: Request, res: Response, next: NextFunction
     if (!currentSessionID) {
       currentSessionID = await initSession(requestIP);
     }
+    res.cookie('sessionID', currentSessionID, { signed: true, maxAge: maxAge.SESSION });
   }
-  res.cookie('sessionID', currentSessionID, { signed: true });
   // Restore or Refresh CartID
   if (!currentCartID) {
     let cart = await CartModel.findOne({ sessionID: currentSessionID });
@@ -28,8 +29,8 @@ const sessionMiddleware = async (req: Request, res: Response, next: NextFunction
     } else {
       currentCartID = cart._id;
     }
+    res.cookie('cartID', currentCartID, { signed: true, maxAge: maxAge.CART });
   }
-  res.cookie('cartID', currentCartID, { signed: true });
   return next();
 };
 
