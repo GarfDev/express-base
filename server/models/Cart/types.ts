@@ -9,16 +9,18 @@ export interface CartItem {
   date_added: number;
 }
 
+export interface CartItems {
+  [id: string]: CartItem;
+}
+
 export interface Cart extends Document {
+  discounts_applied: string[];
   itemCount: number;
-  items: {
-    [id: string]: CartItem;
-  };
+  items: CartItems;
   currency: string;
   itemSubTotalPrice: number;
   originalTotalPrice: number;
   userID?: string;
-  sessionID?: string;
 }
 
 export interface CartModelType extends Model<Cart> {}

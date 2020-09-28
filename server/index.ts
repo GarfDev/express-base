@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import { sessionMiddleware, uploadFileMiddleware } from '@/middlewares';
 // Import Utils
 import { getRedisClient, getMongooseConn } from '@/utils';
+// Import Router
+import rootRouter from './router';
 
 const port = process.env.PORT || 5000;
 const redis_url = process.env.REDIS_URL || '';
@@ -31,12 +33,18 @@ getMongooseConn(process.env.MONGODB_URL);
  */
 
 app.use(cookieParser(process.env.SECRET_KEY));
-app.use(sessionMiddleware);
+// app.use(sessionMiddleware);
 app.use(uploadFileMiddleware);
 
 app.get('/', (req, res) => {
   return res.send({});
 });
+
+/*
+ * Register Routers
+ */
+
+app.use(rootRouter);
 
 /*
  * App listening
