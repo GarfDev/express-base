@@ -1,5 +1,5 @@
-import { Cart, CartModelType } from './types';
 import { model } from 'mongoose';
+import { Cart, CartModelType } from './types';
 import CartSchema from './schema';
 
 const CartModel = model<Cart, CartModelType>('Cart', CartSchema);
