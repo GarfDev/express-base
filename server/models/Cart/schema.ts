@@ -1,34 +1,45 @@
 import { Schema } from 'mongoose';
 import { Cart, CartItems } from './types';
 
-const CartSchema = new Schema<Cart>({
-  discounts_applied: {
-    type: Array,
-    default: [],
+const CartSchema = new Schema<Cart>(
+  {
+    discounts_applied: {
+      type: Array,
+      default: [],
+    },
+    itemCount: {
+      type: Number,
+      default: 0,
+    },
+    items: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+    currency: {
+      type: String,
+    },
+    itemSubTotalPrice: {
+      type: Number,
+      default: 0,
+    },
+    originalTotalPrice: {
+      type: Number,
+      default: 0,
+    },
+    userID: {
+      type: String,
+    },
+    updatedAt: {
+      type: Schema.Types.Date,
+    },
+    createdAt: {
+      type: Schema.Types.Date,
+    },
   },
-  itemCount: {
-    type: Number,
-    default: 0,
-  },
-  items: {
-    type: Schema.Types.Mixed,
-    default: {},
-  },
-  currency: {
-    type: String,
-  },
-  itemSubTotalPrice: {
-    type: Number,
-    default: 0,
-  },
-  originalTotalPrice: {
-    type: Number,
-    default: 0,
-  },
-  userID: {
-    type: String,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 // Schema Pre methods
 

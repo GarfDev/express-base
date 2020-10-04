@@ -6,7 +6,7 @@ export interface CartItem {
   price: number;
   count: number;
   checkout: boolean;
-  date_added: number;
+  addedAt: number;
 }
 
 export interface CartItems {
@@ -21,6 +21,8 @@ export interface Cart extends Document {
   itemSubTotalPrice: number;
   originalTotalPrice: number;
   userID?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CartModelType extends Model<Cart> {}

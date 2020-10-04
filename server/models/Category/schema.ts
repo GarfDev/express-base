@@ -9,6 +9,16 @@ const CategorySchema = new Schema<Category>({
   description: {
     type: String,
   },
+  childOf: {
+    type: Schema.Types.ObjectId,
+    ref: 'Categories',
+  },
+  subCategories: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Categories',
+    },
+  ],
 });
 
 export default CategorySchema;
