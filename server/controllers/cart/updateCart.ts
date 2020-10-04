@@ -1,7 +1,7 @@
 import CartModel from '@/models/Cart';
 import { CartItems } from '@/models/Cart/types';
 
-const updateItems = async (id: string, newItems: CartItems) => {
+const updateCart = async (id: string, newItems: CartItems) => {
   const cart = await CartModel.findById(id);
   if (!cart) return null;
   /*
@@ -20,4 +20,4 @@ const updateItems = async (id: string, newItems: CartItems) => {
   cart.save();
 };
 
-export default updateItems;
+export default updateCart;

@@ -1,10 +1,10 @@
-import Cart, { initialCart } from '@/models/Cart';
+import CartModel, { Cart, initialCart } from '@/models/Cart';
 
-const initCart = async (): Promise<string> => {
-  const newCart = await Cart.create({
+const initCart = async (): Promise<Cart> => {
+  const newCart = await CartModel.create({
     ...initialCart,
   });
-  return newCart._id;
+  return newCart;
 };
 
 export default initCart;

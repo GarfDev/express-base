@@ -1,11 +1,13 @@
 import express from 'express';
 // Import Middlewares
+import CORS from 'cors';
+import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import { sessionMiddleware, uploadFileMiddleware } from '@/middlewares';
+import { uploadFileMiddleware } from '@/middlewares';
 // Import Utils
 import { getRedisClient, getMongooseConn } from '@/utils';
 // Import Router
-import rootRouter from './router';
+import rootRouter from './routers';
 
 const port = process.env.PORT || 5000;
 const redis_url = process.env.REDIS_URL || '';
@@ -32,19 +34,22 @@ getMongooseConn(process.env.MONGODB_URL);
  * Apply Middlewares
  */
 
+app.use(
+  CORS({
+    origin: 'http://localhost',
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
 app.use(cookieParser(process.env.SECRET_KEY));
-// app.use(sessionMiddleware);
 app.use(uploadFileMiddleware);
-
-app.get('/', (req, res) => {
-  return res.send({});
-});
+app.use(morgan('dev'));
 
 /*
  * Register Routers
  */
 
-app.use(rootRouter);
+app.use('/', rootRouter);
 
 /*
  * App listening
